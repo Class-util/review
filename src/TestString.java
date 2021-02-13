@@ -23,6 +23,17 @@ public class TestString {
         System.out.println(str.equals(str2));
         System.out.println("hello".equals(str3));
         System.out.println(str3.equals("hello"));
+        String s1 = "abcd";
+        String s2 = new String("abcd");
+        System.out.println(s1.equals(s2));
+        String a = "hello";
+        String b = "world";
+        String c = "hello" + "world";
+        String d = a + "world";
+        String e = a + b;
+        System.out.println(c == d);
+        System.out.println(c == e);
+        System.out.println(d == e);
     }
 
 }
