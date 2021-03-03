@@ -1,12 +1,54 @@
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
- * Description:String类复习总结代码
+ * Description:
  * User:吴博
  * Date:2021 02 12
  * Time:15:43
  */
 public class TestString {
+
     public static void main(String[] args) {
+        DeckCard deckCard = new DeckCard();
+        List<Card> cards = deckCard.buyCard();
+        System.out.println(cards);
+        deckCard.washCard(cards);
+        System.out.println(cards);
+    }
+
+    public static void main3(String[] args) {
+        String str1 = "welcome to bit";
+        String str2 = "come";
+        String s = removeString(str1, str2);
+        System.out.println(s);
+    }
+
+    public static void main2(String[] args) {
+        List<Student> list = new ArrayList<>();
+        Student s1 = new Student("吴博","网络2",89);
+        Student s2 = new Student("123","网络2",80);
+        Student s3 = new Student("456","网络2",84);
+        list.add(s3);
+        list.add(s1);
+        list.add(s2);
+        System.out.println(list);
+    }
+
+    //删除第一个字符串中出现的第二个字符串中的字符
+    public static String removeString(String str1,String str2){
+        StringBuilder ret = new StringBuilder();
+        for (int i = 0; i < str1.length(); i++) {
+            if(!str2.contains(str1.charAt(i) + "")){
+                ret.append(str1.charAt(i));
+            }
+        }
+        return ret.toString();
+    }
+
+
+    public static void main1(String[] args) {
         //创建字符串的三种方式
         String str = "hello";
         for (int i = 0; i < 10; i++) {
@@ -34,6 +76,12 @@ public class TestString {
         System.out.println(c == d);
         System.out.println(c == e);
         System.out.println(d == e);
+        a.contains("h");
+        System.out.println(a.indexOf('e'));
+        StringBuilder sb = new StringBuilder("hello");
+        sb.append("world");
+        StringBuffer sb2  = new StringBuffer();
+        sb2.append("h");
     }
 
 }
