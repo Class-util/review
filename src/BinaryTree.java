@@ -1,4 +1,11 @@
+import com.sun.org.apache.bcel.internal.generic.CHECKCAST;
 import jdk.nashorn.internal.ir.ReturnNode;
+
+import javax.swing.tree.TreeNode;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
 /**
  * Created with IntelliJ IDEA.
@@ -19,6 +26,99 @@ class BTNode{
 }
 
 public class BinaryTree {
+
+    //层序遍历进阶
+    public List<List<Character>> levelOrder(BTNode root) {
+        List<List<Character>> ret = new ArrayList<>();
+        Queue<BTNode> queue = new LinkedList<>();
+        //判断根是否为空
+        if(root == null)
+            return ret;
+        queue.add(root);
+        //判断队列是否为空
+        BTNode cur = null;
+        while (!queue.isEmpty()){
+            int size = queue.size();
+            List<Character> list = new ArrayList<>();
+            while (size > 0){
+                cur = queue.poll();
+                list.add(cur.val);
+                if(cur.left != null)
+                    queue.add(cur.left);
+                if(cur.right != null)
+                    queue.add(cur.right);
+                size--;
+            }
+            ret.add(list);
+        }
+        return ret;
+    }
+
+    //层序遍历
+    void levelOrderTraversal(BTNode root){
+        Queue<BTNode> queue = new LinkedList<>();
+        //判断根是否为空
+        if(root != null)
+            queue.add(root);
+        //判断队列是否为空
+        BTNode cur = null;
+        while (!queue.isEmpty()){
+            cur = queue.poll();
+            System.out.print(cur.val);
+            if(cur.left != null)
+                queue.add(cur.left);
+            if(cur.right != null)
+                queue.add(cur.right);
+        }
+    }
+
+    //判断是否为平衡二叉树
+    //每个节点的高度差 <= 1
+    public boolean isBalanced(BTNode root) {
+        if(root == null)
+            return true;
+        //当前结点的左树右树高度差是否小于1
+        int left = getHeight(root.left);
+        int right = getHeight(root.right);
+        if(Math.abs(left-right) > 1)
+            return false;
+        //判断下一个结点的左右树是否满足
+        return isBalanced(root.left) && isBalanced(root.right);
+    }
+
+    //判断是否为子树
+    public boolean isSubtree(BTNode s, BTNode t) {
+        //判断其本身是否相同
+        if(s == null || t == null)
+            return false;
+        if(isSameTree(s, t))
+            return true;
+        //32行下的所有代码可以替换为40行的代码
+        if(isSubtree(s.left,t)) {
+            return true;
+        }
+        if(isSubtree(s.right,t)) {
+            return true;
+        }
+        return false;
+        //return isSubtree(s.left,t) || isSubtree(s.right,t);
+    }
+
+    //判断两颗二叉树是否相同
+    public boolean isSameTree(BTNode p, BTNode q){
+        //一个空一个不为空
+        if(p == null && q != null || p != null && q == null)
+            return false;
+        //两个都为空
+        if(p == null && q == null)
+            return true;
+        //值是否相同,这里不用等号判断是因为，如果走到这一步进行判断，首相都不为空，其次如果值相同，说明当前节点是相同的
+        //当前节点相同不代表二叉树相同，所以要去判断下一个节点是否相同。
+        //如果俩结点相同，则需要执行下一个几点的判断，就要走28行的代码，如果不相同，则不需要往下判断，直接返回走37行代码
+        if(p.val != q.val)
+            return false;
+        return isSameTree(p.left,q.left) && isSameTree(p.right,q.right);
+    }
 
     // 遍历思路-求结点个数
     static int size = 0;

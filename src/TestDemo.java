@@ -1,3 +1,5 @@
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * Description:二叉树测试类
@@ -23,5 +25,8 @@ public class TestDemo {
         System.out.println(kLevelSize);
         int height = binaryTree.getHeight(tree);
         System.out.println(height);
+        binaryTree.levelOrderTraversal(tree);
+        List<List<Character>> list = binaryTree.levelOrder(tree);
+        System.out.println(list);
     }
 }
