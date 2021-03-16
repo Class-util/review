@@ -11,22 +11,32 @@ public class TestDemo {
     public static void main(String[] args) {
         BinaryTree binaryTree = new BinaryTree();
         BTNode tree = binaryTree.createTree();
-        binaryTree.preOrderTraversal(tree);
-        binaryTree.getSize1(tree);
+//        binaryTree.preOrderTraversal(tree);
+//        binaryTree.getSize1(tree);
+//        System.out.println();
+//        System.out.println(BinaryTree.size);
+//        int size2 = binaryTree.getSize2(tree);
+//        System.out.println(size2);
+//        binaryTree.getLeafSize1(tree);
+//        System.out.println(BinaryTree.leafSize);
+//        int leafSize2 = binaryTree.getLeafSize2(tree);
+//        System.out.println(leafSize2);
+//        int kLevelSize = binaryTree.getKLevelSize(tree, 3);
+//        System.out.println(kLevelSize);
+//        int height = binaryTree.getHeight(tree);
+//        System.out.println(height);
+//        binaryTree.levelOrderTraversal(tree);
+//        List<List<Character>> list = binaryTree.levelOrder(tree);
+//        System.out.println(list);
+//        boolean completeTree = binaryTree.isCompleteTree(tree);
+//        System.out.println(completeTree);
+//        binaryTree.preOrderTraversal1(tree);
+//        System.out.println();
+//        binaryTree.inOrderTraversal(tree);
+//        System.out.println();
+//        binaryTree.postOrderTraversal(tree);
+        binaryTree.postOrderTraversal(tree);
         System.out.println();
-        System.out.println(BinaryTree.size);
-        int size2 = binaryTree.getSize2(tree);
-        System.out.println(size2);
-        binaryTree.getLeafSize1(tree);
-        System.out.println(BinaryTree.leafSize);
-        int leafSize2 = binaryTree.getLeafSize2(tree);
-        System.out.println(leafSize2);
-        int kLevelSize = binaryTree.getKLevelSize(tree, 3);
-        System.out.println(kLevelSize);
-        int height = binaryTree.getHeight(tree);
-        System.out.println(height);
-        binaryTree.levelOrderTraversal(tree);
-        List<List<Character>> list = binaryTree.levelOrder(tree);
-        System.out.println(list);
+        binaryTree.postOrderTraversal1(tree);
     }
 }

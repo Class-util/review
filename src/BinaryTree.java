@@ -2,10 +2,7 @@ import com.sun.org.apache.bcel.internal.generic.CHECKCAST;
 import jdk.nashorn.internal.ir.ReturnNode;
 
 import javax.swing.tree.TreeNode;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -26,6 +23,90 @@ class BTNode{
 }
 
 public class BinaryTree {
+    //非递归前序遍历
+    void preOrderTraversal1(BTNode root){
+        Stack<BTNode> stack = new Stack<>();
+        if(root == null)
+            return ;
+        stack.push(root);
+        while (!stack.isEmpty()){
+            BTNode cur = stack.pop();
+            System.out.print(cur.val);
+            if(cur.right != null){
+                stack.push(cur.right);
+            }
+            if(cur.left != null){
+                stack.push(cur.left);
+            }
+        }
+    }
+    //非递归中序遍历
+    void inOrderTraversal1(BTNode root){
+        Stack<BTNode> stack = new Stack<>();
+        if(root == null)
+            return ;
+        BTNode cur = root;
+        while (cur != null || !stack.isEmpty()){
+            while (cur != null){
+                stack.push(cur);
+                cur = cur.left;
+            }
+            BTNode top = stack.pop();
+            System.out.print(top.val);
+            cur = top.right;
+        }
+    }
+    //非递归后序遍历
+    void postOrderTraversal1(BTNode root){
+        if(root == null)
+            return ;
+        Stack<BTNode> stack = new Stack<>();
+        BTNode cur = root;
+        BTNode prev = null;
+        while (cur != null || !stack.isEmpty()){
+            while (cur != null){
+                stack.push(cur);
+                cur = cur.left;
+            }
+            BTNode top = stack.peek();
+            if(top.right == null || top.right == prev){
+                stack.pop();
+                System.out.print(top.val);
+                prev = top;
+            }else {
+                cur = top.right;
+            }
+        }
+    }
+
+
+    // 判断一棵树是不是完全二叉树
+    boolean isCompleteTree(BTNode root){
+        Queue<BTNode> queue = new LinkedList<>();
+        if(root == null)
+            return false;
+        queue.add(root);
+        BTNode cur = null;
+        while (!queue.isEmpty()){
+            cur = queue.poll();
+            if(cur != null){
+                queue.add(cur.left);
+                queue.add(cur.right);
+            }else {
+                break;
+            }
+        }
+        BTNode tmp = null;
+        while (!queue.isEmpty()){
+            tmp = queue.peek();
+            if(tmp != null){
+                return false;
+            }else {
+                tmp = queue.poll();
+            }
+        }
+        return true;
+    }
 
     //层序遍历进阶
     public List<List<Character>> levelOrder(BTNode root) {
