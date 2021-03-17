@@ -23,6 +23,31 @@ class BTNode{
 }
 
 public class BinaryTree {
+
+    //寻找最近公共祖先
+    public BTNode lowestCommonAncestor(BTNode root, BTNode p, BTNode q) {
+        //如果根节点为空，不用判断直接返回null
+        if(root == null)
+            return null;
+        //如果p或q是根节点，直接返回根节点即可
+        if(q == root || p == root)
+            return root;
+        //递归调用，先走左子树
+        BTNode left = lowestCommonAncestor(root.left,p,q);
+        //右子树
+        BTNode right = lowestCommonAncestor(root.right,p,q);
+        //如果左右都找到了，则直接返回该节点
+        if(left != null && right != null)
+            return root;
+        //代码执行至此，说明存在为空的，返回不为空的另一个即可
+        if(left == null)
+            return right;
+        if(right == null)
+            return left;
+        //如果都为空，直接返回null
+        return null;
+    }
+
     //非递归前序遍历
     void preOrderTraversal1(BTNode root){
         Stack<BTNode> stack = new Stack<>();
