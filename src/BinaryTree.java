@@ -23,6 +23,46 @@ class BTNode{
 }
 
 public class BinaryTree {
+    //根据二叉树创建字符串
+    public void treeStrChild(BTNode t,StringBuilder sb){
+        if(t == null)
+            return ;
+        sb.append(t.val);
+        if(t.left == null){
+            if(t.right != null){
+                sb.append("()");
+            }else {
+                return ;
+            }
+        }else {
+            sb.append("(");
+            treeStrChild(t.left,sb);
+            sb.append(")");
+        }
+
+        if(t.right != null){
+            sb.append("(");
+            treeStrChild(t.right,sb);
+            sb.append(")");
+        }else {
+            return ;
+        }
+    }
+
+
+    public BTNode prev = null;
+    //将二叉树转为双向链表
+    public void inOrderTraversal2(BTNode pCur) {
+        if(pCur == null)
+            return ;
+        inOrderTraversal2(pCur.left);
+        pCur.left = prev;
+        if(prev != null){
+            prev.right = pCur;
+        }
+        prev = pCur;
+        inOrderTraversal2(pCur.right);
+    }
 
     //寻找最近公共祖先
     public BTNode lowestCommonAncestor(BTNode root, BTNode p, BTNode q) {
