@@ -8,7 +8,15 @@ import java.util.List;
  * Time:15:39
  */
 public class TestDemo {
+
     public static void main(String[] args) {
+            HeapDemo heapDemo = new HeapDemo();
+            int[] arr = {27,15,19,18,28,34,65,49,25,37};
+            heapDemo.createHeap(arr);
+            heapDemo.show();
+    }
+
+    public static void main1(String[] args) {
         BinaryTree binaryTree = new BinaryTree();
         BTNode tree = binaryTree.createTree();
 //        binaryTree.preOrderTraversal(tree);
