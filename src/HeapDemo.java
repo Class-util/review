@@ -1,4 +1,6 @@
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.PriorityQueue;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,6 +13,35 @@ public class HeapDemo {
 
     public int[] elem;
     public int usedSize = 0;
+
+    //TOPK问题,求前k个最大值
+    public void topK(int[] arr,int k){
+        //创建大小为k的小堆
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>(k, new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o1 - o2;
+            }
+        });
+        //遍历数组
+        for (int i = 0; i < arr.length; i++) {
+            if(minHeap.size() < k){
+                minHeap.offer(arr[i]);
+            }else {
+                Integer top = minHeap.peek();
+                if(top != null){
+                    if(arr[i] > top){
+                        minHeap.poll();
+                        minHeap.offer(arr[i]);
+                    }
+                }
+            }
+        }
+        for (int i = 0; i < k; i++) {
+            System.out.println(minHeap.poll());
+        }
+    }
+
 
     //思路：判断堆是否满？如果满进行扩容，将值放在最后一个位置，在进行向上调整
     public void push(int val){
