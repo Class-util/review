@@ -14,6 +14,20 @@ public class HeapDemo {
     public int[] elem;
     public int usedSize = 0;
 
+    //堆排序
+    public void heapSort(){
+        int end = this.usedSize - 1;
+        while (end > 0){
+            //交换第一个和最后一个元素
+            int tmp = this.elem[0];
+            this.elem[0] = this.elem[end];
+            this.elem[end] = tmp;
+            adjustDown(0,end);
+            end--;
+        }
+    }
+
+
     //TOPK问题,求前k个最大值
     public void topK(int[] arr,int k){
         //创建大小为k的小堆
