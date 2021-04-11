@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,6 +12,23 @@ import java.util.List;
 public class TestString {
 
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("请输入第一个字符串");
+        String str1 = sc.next();
+        System.out.println(str1);
+        System.out.println("请输入第二个字符串");
+        String str2 = sc.next();
+        System.out.println(str2);
+        System.out.println("========================");
+        System.out.println("请输入第一个字符串");
+        String s1 = sc.nextLine();
+        System.out.println(s1);
+        System.out.println("请输入第二个字符串");
+        String s2 = sc.nextLine();
+        System.out.println(s2);
+    }
+
+    public static void main4(String[] args) {
         DeckCard deckCard = new DeckCard();
         List<Card> cards = deckCard.buyCard();
         System.out.println(cards);
