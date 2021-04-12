@@ -14,8 +14,39 @@ public class TestSort {
         //DirectInsertionSort(arr);
         //shellSort(arr);
         //changeSort(arr);
-        sort1(arr);
+        //sort1(arr);
+        quickSort(arr);
         System.out.println(Arrays.toString(arr));
+    }
+
+
+    public static int pivot(int[] arr,int start,int end){
+        int tmp = arr[start];
+        while (start < end){
+            while (start < end && arr[end] >= tmp){
+                end--;
+            }
+            arr[start] = arr[end];
+            while (start < end && arr[start] <= tmp){
+                start++;
+            }
+            arr[end] = arr[start];
+        }
+        arr[start] = tmp;
+        return start;
+    }
+
+    public static void quick(int[] arr,int low,int high){
+        if(low < high){
+            int piv = pivot(arr,low,high);
+            quick(arr,low,piv - 1);
+            quick(arr,piv + 1,high);
+        }
+    }
+
+    //快速排序
+    public static void quickSort(int[] arr){
+        quick(arr,0,arr.length-1);
     }
 
     //冒泡排序优化
